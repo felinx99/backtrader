@@ -8,10 +8,10 @@ from datetime import datetime, timezone
 from typing import (Any, Dict, List, Optional, Set, TYPE_CHECKING, Tuple,
                     Union, cast)
 
-from ib_insync.contract import (
+from .contract import (
     Contract, ContractDescription, ContractDetails, DeltaNeutralContract,
     ScanData)
-from ib_insync.objects import (
+from .objects import (
     AccountValue, BarData, BarDataList, CommissionReport, DOMLevel,
     DepthMktDataDescription, Dividends, Execution, FamilyCode, Fill,
     FundamentalRatios, HistogramData, HistoricalNews, HistoricalSchedule,
@@ -21,9 +21,9 @@ from ib_insync.objects import (
     Position, PriceIncrement, RealTimeBar, RealTimeBarList, SoftDollarTier,
     TickAttribBidAsk, TickAttribLast, TickByTickAllLast, TickByTickBidAsk,
     TickByTickMidPoint, TickData, TradeLogEntry)
-from ib_insync.order import Order, OrderState, OrderStatus, Trade
-from ib_insync.ticker import Ticker
-from ib_insync.util import (
+from .order import Order, OrderState, OrderStatus, Trade
+from .ticker import Ticker
+from .util import (
     UNSET_DOUBLE, UNSET_INTEGER, dataclassAsDict, dataclassUpdate,
     getLoop, globalErrorEvent, isNan, parseIBDatetime)
 
@@ -638,10 +638,12 @@ class Wrapper:
     def historicalData(self, reqId: int, bar: BarData):
         results = self._results.get(reqId)
         if results is not None:
+            indate = bar.date
             bar.date = parseIBDatetime(bar.date)  # type: ignore
             results.append(bar)
         #self.ib.historicalData(reqId, bar)
-        #print("HistoricalData. ReqId:", reqId, "BarData.", bar)
+        print("HistoricalData. ReqId:", reqId, "EpochDate", indate, "BarData.", bar)
+        
 
     def historicalSchedule(
             self, reqId: int, startDateTime: str, endDateTime: str,
@@ -658,6 +660,7 @@ class Wrapper:
 
     def historicalDataUpdate(self, reqId: int, bar: BarData):
         bars = self.reqId2Subscriber.get(reqId)
+        indate = bar.date
         bar.date = parseIBDatetime(bar.date)
         hasNewBar = len(bars) == 0
         if hasNewBar:      
@@ -676,7 +679,7 @@ class Wrapper:
         
         self.ib.barUpdateEvent.emit(bars, hasNewBar)
         bars.updateEvent.emit(bars, hasNewBar)
-        #print("HistoricalDataUpdate. ReqId:", reqId, "BarData.", bar.date, "New.", hasNewBar)
+        print("HistoricalDataUpdate. ReqId:", reqId, "EpochDate.", indate, "BarDate", bar.date, "New.", hasNewBar)
 
 
     def headTimestamp(self, reqId: int, headTimestamp: str):

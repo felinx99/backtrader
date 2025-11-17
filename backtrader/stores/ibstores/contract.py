@@ -4,7 +4,7 @@ import datetime as dt
 from dataclasses import dataclass, field
 from typing import List, NamedTuple, Optional
 
-import ib_insync.util as util
+from .util import dataclassAsDict, dataclassNonDefaults, ZoneInfo
 
 
 @dataclass
@@ -149,7 +149,7 @@ class Contract:
             isinstance(other, Contract)
             and (
                 self.conId and self.conId == other.conId
-                or util.dataclassAsDict(self) == util.dataclassAsDict(other)))
+                or dataclassAsDict(self) == dataclassAsDict(other)))
 
     def __hash__(self):
         if not self.isHashable():
@@ -162,7 +162,7 @@ class Contract:
         return h
 
     def __repr__(self):
-        attrs = util.dataclassNonDefaults(self)
+        attrs = dataclassNonDefaults(self)
         if self.__class__ is not Contract:
             attrs.pop('secType', '')
         clsName = self.__class__.__qualname__
@@ -292,7 +292,7 @@ class Forex(Contract):
             exchange=exchange, currency=currency, **kwargs)
 
     def __repr__(self):
-        attrs = util.dataclassNonDefaults(self)
+        attrs = dataclassNonDefaults(self)
         attrs.pop('secType')
         s = 'Forex('
         if 'symbol' in attrs and 'currency' in attrs:
@@ -524,7 +524,7 @@ class ContractDetails:
         return self._parseSessions(self.liquidHours)
 
     def _parseSessions(self, s: str) -> List[TradingSession]:
-        tz = util.ZoneInfo(self.timeZoneId)
+        tz = ZoneInfo(self.timeZoneId)
         sessions = []
         for sess in s.split(';'):
             if not sess or 'CLOSED' in sess:

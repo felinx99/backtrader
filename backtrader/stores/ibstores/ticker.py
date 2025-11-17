@@ -6,12 +6,12 @@ from typing import ClassVar, List, Optional, Union
 
 from eventkit import Event, Op
 
-from ib_insync.contract import Contract
-from ib_insync.objects import (
+from .contract import Contract
+from .objects import (
     DOMLevel, Dividends, FundamentalRatios, MktDepthData,
     OptionComputation, TickByTickAllLast, TickByTickBidAsk, TickByTickMidPoint,
     TickData)
-from ib_insync.util import dataclassRepr, isNan
+from .util import dataclassRepr, isNan
 
 nan = float('nan')
 

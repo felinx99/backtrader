@@ -733,7 +733,7 @@ class IBData(with_metaclass(MetaIBData, DataBase)):
                     self.put_notification(self.DELAYED)
 
                 dtend = None
-                dtend = msg.datetime if self._usertvol else msg.time
+                dtend = '' #msg.datetime if self._usertvol else msg.time
 
                 self.qhist = self.ib.reqHistoricalData(
                     contract=self.contract, endDateTime=dtend, 

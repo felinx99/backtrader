@@ -4,7 +4,7 @@ import asyncio
 
 from eventkit import Event
 
-from ib_insync.util import getLoop
+from .util import getLoop
 
 
 class Connection(asyncio.Protocol):

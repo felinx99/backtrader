@@ -492,8 +492,8 @@ class AbstractDataBase(with_metaclass(MetaAbstractDataBase,
 
             # Get a reference to current loaded time
             dt = self.lines.datetime[0]
-            dtime = num2date(dt)
-            print(f"load data: {dtime}")
+            dtime = num2date(dt, tz=self._tz)
+            #print(f"load data: {dtime} -- {dt}")
 
             # A bar has been loaded, adapt the time
             if self._tzinput:
