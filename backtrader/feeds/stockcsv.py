@@ -64,7 +64,7 @@ class stockCSVData(feed.CSVDataBase):
         except:
             try:
                 # 如果复杂格式失败，尝试简单格式: 'YYYYMMDD'
-                dt_object = datetime.datetime.strptime(dttxt, '%Y%m%d')
+                dt_object = datetime.datetime.strptime(dttxt, '%Y-%m-%d')
             except Exception as e:
                 # 如果两种格式都失败
                 print(f"parse '{dttxt}' error with either format.")
