@@ -1,0 +1,17 @@
+[project]
+name = "backtrader"
+version = "1.9.78"
+description = "backtrader的自我魔改版"
+authors = [
+    {name = "felinx99",email = "wangyu.hz@hotmail.com"}
+]
+license = {text = "GPL-3.0"}
+requires-python = ">=3.12"
+dependencies = [
+    "pandas (>=3.0.1,<4.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
