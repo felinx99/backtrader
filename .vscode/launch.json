@@ -1,0 +1,96 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "samples: bracket order",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "samples.bracket.bracket",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false,
+            "args": [
+                "--data0=E:\\gitcode\\backtrader\\datas\\2005-2006-day-001.txt",
+                "--strat= usebracket=True",
+                "--sizer= stake=3",
+                "--broker= slip_perc=0.001",
+                "--cerebro= plot=True"
+
+            ]
+        },
+        {
+            "name": "samples: oco order",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "samples.oco.oco",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false,
+            "args": [
+                "--data0=E:\\gitcode\\backtrader\\datas\\2005-2006-day-001.txt",
+                "--sizer= stake=3",
+                "--broker= slip_perc=0.001",
+                "--plot= plot=True, volume=False"
+
+            ]
+        },
+
+        {
+            "name": "samples: stoptrail order",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "samples.stoptrail.trail",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false,
+            "args": [
+                "--data0=E:\\gitcode\\backtrader\\datas\\2005-2006-day-001.txt",
+                "--sizer= stake=3",
+                "--broker= slip_perc=0.001",
+                "--plot= plot=True, volume=False"
+
+            ]
+        },   
+        
+        {
+            "name": "samples: observer benchmark",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "samples.observer-benchmark.observer-benchmark",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false,
+            "args": [
+                "--data0=E:\\gitcode\\backtrader\\datas\\yhoo-1996-2015.txt",
+                "--data1=E:\\gitcode\\backtrader\\datas\\orcl-1995-2014.txt",
+                "--plot= plot=True, volume=False"
+            ]
+        },  
+
+        {
+            "name": "samples: sigsmacross",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "samples.sigsmacross.sigsmacross",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false,
+            "args": [
+                "--data=E:\\gitcode\\backtrader\\datas\\yhoo-1996-2015.txt",
+                "--plot= plot=True, volume=False"
+            ]
+        }, 
+
+        {
+            "name": "samples: weekdaysaligner",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "samples.weekdays-filler.weekdaysaligner",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false,
+            "args": [
+                "--data0=E:\\gitcode\\backtrader\\datas\\yhoo-1996-2015.txt",
+                "--data1=E:\\gitcode\\backtrader\\datas\\orcl-1995-2014.txt",
+                "--sma=5"
+            ]
+        }
+    ]
+}
